@@ -1,0 +1,40 @@
+# PWM
+
+esphome:
+  name: workshop-demo
+  on_boot:
+    then:
+      - logger.log: Hello World
+      # See https://github.com/esphome/esphome/issues/10167
+      - output.turn_off: led
+
+esp32:
+  board: esp32-c3-devkitm-1
+  framework:
+    type: esp-idf
+
+logger:
+
+output:
+  - id: led
+    platform: ledc
+    pin:
+      number: GPIO08
+      inverted: true
+
+binary_sensor:
+  - id: boot_button
+    platform: gpio
+    name: Boot Button
+    pin:
+      number: GPIO09
+      inverted: true
+    on_click:
+      - output.set_level:
+          id: led
+          level: !lambda |-
+            // Cycle through 4 levels of brightness
+            static int level_idx = 0;
+            const int LEVELS = 4;
+            level_idx = (level_idx + 1) % LEVELS;
+            return float(level_idx) / (LEVELS-1);

@@ -1,0 +1,32 @@
+# Tying Input and Output Together
+
+esphome:
+  name: workshop-demo
+  on_boot:
+    - logger.log: Hello World
+
+esp32:
+  board: esp32-c3-devkitm-1
+  framework:
+    type: esp-idf
+
+logger:
+
+output:
+  - id: led
+    platform: gpio
+    pin:
+      number: GPIO08
+      inverted: true
+
+binary_sensor:
+  - id: boot_button
+    platform: gpio
+    name: Boot Button
+    pin:
+      number: GPIO09
+      inverted: true
+    on_press:
+      - output.turn_on: led
+    on_release:
+      - output.turn_off: led

@@ -1,0 +1,69 @@
+# Home Assistant Integration
+
+esphome:
+  name: workshop-demo
+  name_add_mac_suffix: true
+  friendly_name: Workshop Demo
+  on_boot:
+    then:
+      - logger.log: Hello World
+
+esp32:
+  board: esp32-c3-devkitm-1
+  framework:
+    type: esp-idf
+
+api:
+  encryption:
+    # Generate a new key at https://esphome.io/components/api.html#configuration-variables
+    key: BNqf5eL9t1jsX8ttokOT4hxUFTkhQP9Tr+cKCCHCpAE=
+
+logger:
+
+output:
+  - id: led_output
+    platform: ledc
+    pin:
+      number: GPIO08
+      inverted: true
+
+light:
+  - id: led
+    platform: monochromatic
+    name: Board LED
+    output: led_output
+    restore_mode: RESTORE_DEFAULT_OFF
+
+binary_sensor:
+  - id: boot_button
+    platform: gpio
+    name: Boot Button
+    pin:
+      number: GPIO09
+      inverted: true
+    on_click:
+      - light.turn_on:
+          id: led
+          brightness: !lambda |-
+            // Cycle through 4 levels of brightness
+            const int LEVELS = 4;
+            int current_level_idx = round(id(led).current_values.get_brightness() * (LEVELS-1));
+            if (!id(led).current_values.is_on()) {
+              current_level_idx = 0;
+            }
+            int new_level_idx = (current_level_idx + 1) % LEVELS;
+            return float(new_level_idx) / (LEVELS-1);
+
+wifi:
+  ap:
+
+# Go to https://www.improv-wifi.com/ to provision the device.
+improv_serial:
+
+# Go to http://{{device_name}}.local to provision the device.
+captive_portal:
+
+# Server runs on http://{{device_name}}.local
+web_server:
+  version: 3
+  local: true

@@ -1,0 +1,13 @@
+# Hello World
+
+esphome:
+  name: workshop-demo
+  on_boot:
+    - logger.log: Hello World
+
+esp32:
+  board: esp32-c3-devkitm-1
+  framework:
+    type: esp-idf
+
+logger:

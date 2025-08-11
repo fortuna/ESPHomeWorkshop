@@ -1,0 +1,57 @@
+# PWM
+
+esphome:
+  name: workshop-demo
+  on_boot:
+    then:
+      - logger.log: Hello World
+
+esp32:
+  board: esp32-c3-devkitm-1
+  framework:
+    type: esp-idf
+
+logger:
+
+# number:
+#   - id: level_idx
+#     platform: template
+#     optimistic: true
+#     min_value: 0
+#     max_value: 1
+#     step: 0.3333333
+#     on_value:
+#       then:
+#         - light.turn_on:
+#             id(level_idx) = (id(level_idx) + 1) % LEVELS;
+#             return float(id(level_idx)) / (LEVELS-1);
+#             id: light_1
+#             red: !lambda "return x/255;"
+
+# globals:
+#   - id: level_idx
+#     type: int
+#     restore_value: true
+
+output:
+  - id: led
+    platform: ledc
+    pin:
+      number: GPIO08
+      inverted: true
+
+binary_sensor:
+  - id: boot_button
+    platform: gpio
+    name: Boot Button
+    pin:
+      number: GPIO09
+      inverted: true
+    on_click:
+      - output.set_level:
+          id: led
+          level: !lambda |-
+            // Cycle through 4 levels of brightness
+            const int LEVELS = 4;
+            id(level_idx) = (id(level_idx) + 1) % LEVELS;
+            return float(id(level_idx)) / (LEVELS-1);
