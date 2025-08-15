@@ -8,15 +8,16 @@
     1. Enter the wifi network name and password (check with the instructor)
     1. Press **NEXT**.
 
-    ![alt text](image.png)
+    <img width="320" alt="image" src="new-device.png" />
 
 1. In the *Installation* dialog, press **SKIP THIS STEP**.
 
 1. In the *Select your device type* dialog, select **ESP32-C3**. This will add a configuration entry on your dashboard.
 
-1. In the *Configuration created!* fialog, press **SKIP**. This will take you back to the dshboard, now with a config entry in it
+1. In the *Configuration created* dialog, press **SKIP**. This will take you back to the dshboard, now with a config entry in it
 
-    ![alt text](image-2.png)
+    <img width="320" alt="image" src="added-config.png" />
+
 
 1. On the newly created config, press **EDIT**.
 
