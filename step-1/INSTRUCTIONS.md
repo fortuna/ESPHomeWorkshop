@@ -52,8 +52,7 @@
           inverted: True
     ```
 
-    > [!IMPORTANT]
-    > At this point, let's pause and understand the components we have configured.
+    > **Note:** At this point, let's pause and understand the components we have configured.
 
 1. Press **INSTALL** (this will save the file for you).
 
