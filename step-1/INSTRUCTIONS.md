@@ -1,4 +1,4 @@
-# Step 1: Create your first firmware
+# Step 1: Create Your First Firmware
 
 1. In the home screen, press **NEW DEVICE** on the bottom right.
 1. In the *New device* dialog:
@@ -72,6 +72,6 @@ This will generate the firmware, flash the device, start it and stream the logs.
 
 <div align=right><p>
 
-➡️ Go to [Step 2](step-2/INSTRUCTIONS.md)
+➡️ Go to [Step 2](../step-2/INSTRUCTIONS.md)
 
 </p></div>
