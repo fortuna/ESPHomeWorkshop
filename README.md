@@ -11,6 +11,23 @@ Wiki: https://wiki.hope.net/index.php/Getting_Started_With_ESPHome_Workshop
 
 1. **Install ESPHome**: This is the most important and problematic step. Please follow the instructions in [Installing ESPHome Manually](https://esphome.io/guides/installing_esphome.html).
 
+    - On macOS:
+      ```sh
+      brew install esphome
+      ```
+    - On Linux:
+      ```sh
+      sudo apt install python3.13-venv
+      python3 -m venv venv
+      source venv/bin/activate
+      ```
+    - On Windows:
+      [Install Python](https://www.python.org/downloads/) if you don't have it already. Then:
+      ```
+      pip3 install wheel
+      pip3 install esphome
+      ```
+
 1. **Create a folder** for your workshop code and enter it. For example:
 
     ```bash
@@ -31,8 +48,8 @@ Your browser should open http://localhost:6052/ and look like this:
   
 </div>
 
-<div align=right>
+<div align=right><p>
 
 ➡️ Go to [Step 1](step-1/INSTRUCTIONS.md)
 
-</div>
+</p></div>

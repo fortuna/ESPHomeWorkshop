@@ -5,7 +5,9 @@
 
     1. Name your device `workshop-<unique>`, where the `<unique>` suffix should be something unique
     to your device to avoid collision with others.
-    1. Enter the wifi network name and password (check with the instructor)
+    1. Enter the wifi credentials:
+        - Name: `HOPE16`
+        - Password: `hope2025`
     1. Press **NEXT**.
 
     <img width="320" alt="image" src="new-device.png" />
@@ -66,7 +68,10 @@
 
 This will generate the firmware, flash the device, start it and stream the logs.
 
+> **Note:** At this point, let's understand the logs and see how to add the device to Home Assistant.
 
-<!-- You should see "Hello World!" in the logs:
+<div align=right><p>
 
-![alt text](image-1.png) -->
+➡️ Go to [Step 2](step-2/INSTRUCTIONS.md)
+
+</p></div>
