@@ -12,12 +12,12 @@ esp32:
 
 logger:
 
-# output:
-#   - id: led
-#     platform: gpio
-#     pin:
-#       number: GPIO08
-#       inverted: true
+output:
+  - id: led
+    platform: gpio
+    pin:
+      number: GPIO08
+      inverted: true
 
 binary_sensor:
   - id: boot_button

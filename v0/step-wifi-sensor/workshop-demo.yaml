@@ -1,0 +1,80 @@
+esphome:
+  name: workshop-demo
+  friendly_name: Workshop Demo
+
+esp32:
+  board: esp32-c3-devkitm-1
+  framework:
+    type: esp-idf
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+  encryption:
+    key: "9JrQoRS861UU9KnNgUZvZHW3ew3ODAcOGwEQfW1hvQA="
+
+ota:
+  - platform: esphome
+    password: "f7cdcbde232941044686192da1d1f854"
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "Workshop-Demo Fallback Hotspot"
+    password: "TfNyq7Ukryyt"
+
+captive_portal:
+
+#### INSERT CODE HERE ####
+
+web_server:
+  version: 3
+  ota: False
+
+binary_sensor:
+  - id: boot_button
+    name: Boot Button
+    platform: gpio
+    pin:
+      number: GPIO09
+      inverted: True
+
+light:
+  - id: led
+    name: Board LED
+    platform: monochromatic
+    output: led_output
+    effects:
+      - pulse:
+      - flicker:
+          intensity: 50%
+      - strobe:
+
+output:
+  - id: led_output
+    platform: ledc
+    pin:
+      number: GPIO08
+      inverted: True
+
+sensor:
+  - platform: wifi_signal # Reports the WiFi signal strength/RSSI in dB
+    name: "WiFi Signal dB"
+    id: wifi_signal_db
+    update_interval: 5s
+    entity_category: "diagnostic"
+
+  - platform: copy # Reports the WiFi signal strength in %
+    source_id: wifi_signal_db
+    name: "WiFi Signal Percent"
+    filters:
+      # -50db = 100%, -100db = 0%
+      - lambda: return min(max(2 * (x + 100.0), 0.0), 100.0);
+    unit_of_measurement: "Signal %"
+    entity_category: "diagnostic"
+    device_class: ""

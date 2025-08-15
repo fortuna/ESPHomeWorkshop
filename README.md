@@ -33,6 +33,6 @@ Your browser should open http://localhost:6052/ and look like this:
 
 <div align=right>
 
-➡️ Go to [Step 1](step-1.md)
+➡️ Go to [Step 1](step-1/INSTRUCTIONS.md)
 
 </div>

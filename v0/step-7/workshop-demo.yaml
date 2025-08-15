@@ -51,6 +51,7 @@ binary_sensor:
 
 wifi:
   ap:
+    password: supersecret
 
 # Server runs on http://{{device_name}}.local
 web_server:

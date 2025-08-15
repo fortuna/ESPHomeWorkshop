@@ -13,16 +13,16 @@ esphome:
           - output.turn_off: led
           - delay: 1s
 
-esp32:
-  board: esp32-c3-devkitm-1
-  framework:
-    type: esp-idf
-
-logger:
-
 output:
   - id: led
     platform: gpio
     pin:
       number: GPIO08
       inverted: true
+
+esp32:
+  board: esp32-c3-devkitm-1
+  framework:
+    type: esp-idf
+
+logger:
