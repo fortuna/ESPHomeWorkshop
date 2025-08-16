@@ -44,7 +44,7 @@ Wiki: https://wiki.hope.net/index.php/Getting_Started_With_ESPHome_Workshop
 1. **Start and open the ESPHome Dashboard**. Run:
 
     ```bash
-    esphome dashboard --address localhost --open-ui .
+    esphome dashboard --address localhost --open-ui ./
     ```
 
 Your browser should open http://localhost:6052/ and look like this:
