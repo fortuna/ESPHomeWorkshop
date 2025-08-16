@@ -38,8 +38,6 @@ wifi:
 
 captive_portal:
 
-## Generated code above ##
-
 binary_sensor:
   - id: boot_button
     name: Boot Button

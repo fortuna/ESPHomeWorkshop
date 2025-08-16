@@ -1,7 +1,7 @@
 # Step 2: Control Without Home Assistant
 
 1. In the dashboard home press **EDIT** on the device card.
-1. Make these edits so the code:
+1. Make these edits so the code, so it matches [Step 2 code.yaml](code.yaml):
 
     - Comment out the `api`, `ota` and `captive_portal` sections
     - Comment out the `wifi` credentials (`ssid` and `password`)
