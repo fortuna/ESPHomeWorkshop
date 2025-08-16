@@ -117,8 +117,32 @@ This will generate the firmware, flash the device, start it and stream the logs.
     ![alt text](image.png)
 
 
-<div align=right><p>
+## Local Automation
+
+1. Uncomment the event handles on the `boot_button`:
+
+    ```yaml
+    binary_sensor:
+      - id: boot_button
+        name: Boot Button
+        platform: gpio
+        pin:
+          number: ${PIN_BUTTON}
+          inverted: True
+        on_click: 
+          - light.toggle: led
+        on_double_click: 
+          - light.turn_on:
+              id: led
+              effect: Flicker
+    ```
+
+  1. Reinstall the firmware
+
+  1. Try the buttons
+
+<!-- <div align=right><p>
 
 ➡️ Go to [Step 2](../step-2/INSTRUCTIONS.md)
 
-</p></div>
+</p></div> -->
