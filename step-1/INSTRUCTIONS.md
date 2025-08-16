@@ -3,10 +3,9 @@
 1. In the home screen, press **NEW DEVICE** on the bottom right.
 1. In the *New device* dialog:
 
-    1. Name your device `workshop-<unique>`, where the `<unique>` suffix should be something unique
-    to your device to avoid collision with others.
+    1. Name your device `workshop`. We'll tweak it later to avoid collision with others.
     1. Enter the wifi credentials:
-        - Name: `HOPE16`
+        - Name: `Workshop AP`
         - Password: `hope2025`
     1. Press **NEXT**.
 
@@ -33,10 +32,10 @@
       # Insert your own keys here.
       API_KEY: "COPY_FROM_GENERATED_CODE"
       OTA_KEY: "COPY_FROM_GENERATED_CODE"
+      # Unique name for your device
+      unique_name: workshop-${OTA_KEY[-6:]}
     ```
     1. Now replace the the rest of the code with the code in [code.yaml](code.yaml).
-
-    > **Note:** At this point, let's pause and understand the components we have configured.
 
 1. Press **INSTALL** (this will save the file for you).
 
@@ -53,7 +52,7 @@
     Otherwise a possible workaround
     may be running the dashboard with `sudo`.
 
-This will generate the firmware, flash the device, start it and stream the logs.
+This will generate the firmware, flash the device, start it and stream the logs. This may take a some time the first, so you can [slack off](https://xkcd.com/303/) for a bit.
 
 > **Note:** At this point, let's understand the logs and see how to add the device to Home Assistant.
 
