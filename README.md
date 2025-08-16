@@ -15,12 +15,19 @@ Wiki: https://wiki.hope.net/index.php/Getting_Started_With_ESPHome_Workshop
       ```sh
       brew install esphome
       ```
+
     - On Linux:
       ```sh
       sudo apt install python3.13-venv
       python3 -m venv venv
       source venv/bin/activate
       ```
+
+      You may need to give your user access to the serial ports:
+      ```sh
+      sudo usermod -a -G dialout $USER
+      ```
+
     - On Windows:
       [Install Python](https://www.python.org/downloads/) if you don't have it already. Then:
       ```

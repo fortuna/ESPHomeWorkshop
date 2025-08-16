@@ -1,0 +1,62 @@
+esphome:
+  name: workshop-vini
+  friendly_name: workshop-vini
+
+esp32:
+  board: esp32-c3-devkitm-1
+  framework:
+    type: esp-idf
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+# api:
+#   encryption:
+#     key: "Nxhe6B9hv8n8UQe5mNAqh+qUlmXC1KsJHFtMHCwAUBE="
+
+# ota:
+#   - platform: esphome
+#     password: "dbb3f1344f71938a9c14c770bed37fb6"
+
+wifi:
+  # ssid: !secret wifi_ssid
+  # password: !secret wifi_password
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "Workshop-Vini Fallback Hotspot"
+    password: "9UZmmYo54fTe"
+
+# captive_portal:
+    
+## Generated code above ##
+
+web_server:
+  version: 3
+  local: True
+
+binary_sensor:
+  - id: boot_button
+    name: Boot Button
+    platform: gpio
+    pin:
+      number: GPIO09
+      inverted: True
+
+light:
+  - id: led
+    name: Board LED
+    platform: monochromatic
+    output: led_output
+    effects:
+      - pulse:
+      - flicker:
+      - strobe:
+
+output:
+  - id: led_output
+    platform: ledc
+    pin:
+      number: GPIO08
+      inverted: True

@@ -63,7 +63,12 @@
 1. In the *Pick Server Port* dialog, select **USB JTAG/serial debug unit**. this will start the firmware build and install it on your device.
   - If the device doesn't show up, your USB cable may be power-only (no data).
   - People have had issues with permissions on Linux. Your user may have
-    to be in the right group to see the serial devices. A possible workaround
+    to be in the right group to see the serial devices:
+    
+    ```sh
+    sudo usermod -a -G dialout $USER
+    ```
+    Otherwise a possible workaround
     may be running the dashboard with `sudo`.
 
 This will generate the firmware, flash the device, start it and stream the logs.
