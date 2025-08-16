@@ -8,10 +8,14 @@ substitutions:
   # Unique name for your device
   unique_name: workshop-${OTA_KEY[-6:]}
 
+# -----[ Copy everything below ]-------
+
+# Core ESPHome configuration.
 esphome:
   name: ${unique_name}
   friendly_name: Workshop Demo
 
+# Configuration specific to the MCU and board.
 esp32:
   board: esp32-c3-devkitm-1
   framework:
@@ -20,26 +24,34 @@ esp32:
 # Enable logging
 logger:
 
-# Enable Home Assistant API
+# Enable the Home Assistant API.
 api:
   encryption:
+    # The key is manually shared with Home Assistant to enable secure communication.
     key: ${API_KEY}
 
+# Enable Over-the-Air (OTA) updates. This is convenient, especially for devices
+# that are not easily accessible or that need disassembly to access the serial port.
 ota:
   - platform: esphome
+    # The password is needed to secure the update process.
     password: ${OTA_PASSWORD}
 
+# Configure Wi-Fi connection.
 wifi:
+  # Wifi credentials.
   ssid: !secret wifi_ssid
   password: !secret wifi_password
 
-  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  # Enable fallback hotspot in case wifi connection fails.
   ap:
     ssid: "${unique_name} Fallback Hotspot"
     password: "changeme"
 
-captive_portal:
+# Triggers a captive portal for wifi configuration if configured wifi fails.
+# captive_portal:
 
+# Sensors with bynary state (on/off).
 binary_sensor:
   - id: boot_button
     name: Boot Button
@@ -48,9 +60,11 @@ binary_sensor:
       number: ${PIN_BUTTON}
       inverted: True
 
+# Light components.
 light:
   - id: led
     name: Board LED
+    # Monochromatic allows for brightness control.
     platform: monochromatic
     output: led_output
     effects:
@@ -61,7 +75,16 @@ light:
 
 output:
   - id: led_output
+    # LEDC (LED Control) is used for PWM control of the LED, giving it levels between 0 and 1.
     platform: ledc
     pin:
       number: ${PIN_LED}
       inverted: True
+
+# Web server for local control and monitoring.
+web_server:
+  version: 3
+  # Embed all web resources.
+  local: true
+  # Disables insecure OTA over the webserver.
+  ota: false
