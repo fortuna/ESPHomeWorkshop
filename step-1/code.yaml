@@ -5,9 +5,11 @@ substitutions:
   # Insert your own keys here.
   API_KEY: "COPY_FROM_GENERATED_CODE"
   OTA_KEY: "COPY_FROM_GENERATED_CODE"
+  # Unique name for your device
+  unique_name: workshop-${OTA_KEY[-6:]}
 
 esphome:
-  name: workshop-${OTA_KEY[-6:]}
+  name: ${unique_name}
   friendly_name: Workshop Demo
 
 esp32:
@@ -33,7 +35,7 @@ wifi:
 
   # Enable fallback hotspot (captive portal) in case wifi connection fails
   ap:
-    ssid: "${name} Fallback Hotspot"
+    ssid: "${unique_name} Fallback Hotspot"
     password: "changeme"
 
 captive_portal:
