@@ -1,7 +1,14 @@
+substitutions:
+  # This depends on how your device is wired.
+  PIN_LED: GPIO08
+  PIN_BUTTON: GPIO09
+  # Insert your own keys here.
+  API_KEY: "COPY_FROM_GENERATED_CODE"
+  OTA_KEY: "COPY_FROM_GENERATED_CODE"
+
 esphome:
-  name: workshop
+  name: workshop-${OTA_KEY[-6:]}
   friendly_name: Workshop Demo
-  name_add_mac_suffix: True
 
 esp32:
   board: esp32-c3-devkitm-1
@@ -14,11 +21,11 @@ logger:
 # Enable Home Assistant API
 api:
   encryption:
-    key: "jihkcB9zwdX6lftR5U9zEdUX674OtzpDwpL0cHeQCDk="
+    key: ${API_KEY}
 
 ota:
   - platform: esphome
-    password: "5a0773679be9e7f2e04b97c930602c0e"
+    password: ${OTA_PASSWORD}
 
 wifi:
   ssid: !secret wifi_ssid
@@ -26,8 +33,8 @@ wifi:
 
   # Enable fallback hotspot (captive portal) in case wifi connection fails
   ap:
-    ssid: "Workshop-Vini Fallback Hotspot"
-    password: "HSQADnCAzkxB"
+    ssid: "${name} Fallback Hotspot"
+    password: "changeme"
 
 captive_portal:
 
@@ -38,7 +45,7 @@ binary_sensor:
     name: Boot Button
     platform: gpio
     pin:
-      number: GPIO09
+      number: ${PIN_BUTTON}
       inverted: True
 
 light:
@@ -49,11 +56,12 @@ light:
     effects:
       - pulse:
       - flicker:
+          intensity: 50%
       - strobe:
 
 output:
   - id: led_output
     platform: ledc
     pin:
-      number: GPIO08
+      number: ${PIN_LED}
       inverted: True

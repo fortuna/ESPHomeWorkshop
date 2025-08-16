@@ -23,36 +23,18 @@
 
 1. On the newly created config, press **EDIT**.
 
-1. Append the following to the generated code:
-
+1. We will make some edits to make the same code work for everyone.
+    1. At the top, add a section for substitutions:
     ```yaml
-    ## Generated code above ##
-
-    binary_sensor:
-      - id: boot_button
-        name: Boot Button
-        platform: gpio
-        pin:
-          number: GPIO09
-          inverted: True
-
-    light:
-      - id: led
-        name: Board LED
-        platform: monochromatic
-        output: led_output
-        effects:
-          - pulse:
-          - flicker:
-          - strobe:
-
-    output:
-      - id: led_output
-        platform: ledc
-        pin:
-          number: GPIO08
-          inverted: True
+    substitutions:
+      # This depends on how your device is wired.
+      PIN_LED: GPIO08
+      PIN_BUTTON: GPIO09
+      # Insert your own keys here.
+      API_KEY: "COPY_FROM_GENERATED_CODE"
+      OTA_KEY: "COPY_FROM_GENERATED_CODE"
     ```
+    1. Now replace the the rest of the code with the code in [code.yaml](code.yaml).
 
     > **Note:** At this point, let's pause and understand the components we have configured.
 
@@ -64,7 +46,7 @@
   - If the device doesn't show up, your USB cable may be power-only (no data).
   - People have had issues with permissions on Linux. Your user may have
     to be in the right group to see the serial devices:
-    
+
     ```sh
     sudo usermod -a -G dialout $USER
     ```
